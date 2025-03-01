@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हाम्रो परिवार कोष</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column; /* Align items vertically */
+        }
+
+        /* Main heading styling */
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        /* Styling for "हाम्रो" */
+        .hamro {
+            color: white;
+            -webkit-text-stroke: 1px black; /* Black stroke */
+            text-stroke: 2px black;
+        }
+
+        /* Styling for "परिवार" */
+        .parivar {
+            color: yellow;
+            -webkit-text-stroke: 1px black; /* Black stroke */
+            text-stroke: 1px black;
+        }
+
+        /* Styling for "कोष" */
+        .kosh {
+            color: orange;
+            -webkit-text-stroke: 1px black; /* Black stroke */
+            text-stroke: 2px black;
+        }
+
+        /* Container for the entire content */
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px; /* Slightly wider container */
+        }
+
+        /* Dropdown styling */
+        #memberDropdown {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        /* Member details section styling */
+        #memberDetails {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+
+        /* Center and underline "सदस्य विवरण" */
+        #memberDetails h3 {
+            text-align: center;
+            text-decoration: underline;
+            color: #333;
+        }
+
+        /* Read-only input field styling */
+        input[readonly] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            cursor: not-allowed;
+            font-size: 14px;
+            font-weight: bold;
+            width: 100px; /* Smaller width for input fields */
+        }
+
+        /* Green color for जम्मा गरेको रकम input */
+        #totalAmount {
+            color: green;
+        }
+
+        /* Blue color for कोषमा जम्मा भएको रकम input */
+        #totalFundAmount {
+            color: blue;
+        }
+
+        /* Label styling */
+        label {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px; /* Space between label and input */
+            white-space: nowrap; /* Prevent label text from wrapping */
+        }
+
+        /* Flexbox for aligning labels and inputs side by side */
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the new section */
+        .totalFunds {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main Heading -->
+<h1>
+    <span class="hamro">हाम्रो</span>
+    <span class="parivar">परिवार</span>
+    <span class="kosh">कोष</span>
+</h1>
+
+<!-- Container for Dropdown and Details -->
+<div class="container">
+    <!-- Dropdown List -->
+    <select id="memberDropdown" onchange="showMemberDetails()">
+        <option value="">-- सदस्यको नाम छान्नुहोस्  --</option>
+        <option value="अनिल/ संगीता">अनिल/ संगीता</option>
+        <option value="मीना/ शैलेन्द्र">मीना/ शैलेन्द्र</option>
+        <option value="सुनिल/ ममीता">सुनिल/ ममीता</option>
+        <option value="बुद्धि/ अमीता">बुद्धि/ अमीता</option>
+    </select>
+
+    <!-- Member Details Section -->
+    <div id="memberDetails">
+        <h3>सदस्य विवरण</h3>
+        <p id="selectedMember"></p>
+
+        <!-- जम्मा गरेको रकम -->
+        <div class="input-group">
+            <label for="totalAmount">जम्मा गरेको रकम:</label>
+            <input type="text" id="totalAmount" value="रु. १५०० /-" readonly>
+        </div>
+      <hr>
+        <!-- कोषमा जम्मा भएको रकम -->
+        <div class="input-group">
+            <label for="totalFundAmount">कोषमा जम्मा भएको रकम:</label>
+            <input type="text" id="totalFundAmount" value="रु. ६००० /-" readonly>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showMemberDetails() {
+        // Get the selected value from the dropdown
+        var selectedMember = document.getElementById("memberDropdown").value;
+
+        // Get the member details section
+        var memberDetailsSection = document.getElementById("memberDetails");
+
+        // Get the paragraph where we will display the selected member
+        var selectedMemberParagraph = document.getElementById("selectedMember");
+
+        if (selectedMember) {
+            // If a member is selected, show the details section and display the selected member's name
+            memberDetailsSection.style.display = "block";
+            selectedMemberParagraph.textContent = "सदस्यको नाम: " + selectedMember;
+        } else {
+            // If no member is selected, hide the details section
+            memberDetailsSection.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
