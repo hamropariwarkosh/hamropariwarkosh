@@ -15,11 +15,12 @@
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
+            font-size: 1.1rem;
         }
         h1 {
             margin-bottom: 20px;
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
         }
         .hamro {
             color: white;
@@ -46,16 +47,16 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 90%;
-            max-width: 350px;
+            max-width: 380px; /* Slightly increased container width */
             margin-bottom: 40px;
         }
         #memberDropdown {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 15px;
+            font-size: 1.1rem;
         }
         #memberDetails {
             display: none;
@@ -65,31 +66,33 @@
             border-radius: 5px;
             background-color: #f9f9f9;
             text-align: left;
+            font-size: 1.1rem;
         }
         #memberDetails h3 {
             text-align: center;
             text-decoration: underline;
             color: #333;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
         #selectedMember {
             color: #4a2c82;
             font-weight: bold;
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin: 10px 0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         input[readonly] {
-            padding: 8px;
+            padding: 8px 6px; /* Reduced padding */
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #e9ecef;
             cursor: not-allowed;
-            font-size: 14px;
+            font-size: 1rem; /* Slightly reduced font size */
             font-weight: bold;
-            width: 120px;
+            width: 110px; /* Reduced width */
             text-align: center;
+            box-sizing: border-box;
         }
         #totalAmount {
             color: green;
@@ -100,9 +103,9 @@
         label {
             font-weight: bold;
             color: #555;
-            margin-right: 10px;
+            margin-right: 8px; /* Reduced margin */
             white-space: nowrap;
-            font-size: 1rem;
+            font-size: 1.1rem; /* Slightly reduced */
             font-weight: 700;
         }
         .input-group {
@@ -119,17 +122,18 @@
             border-radius: 5px;
             background-color: #f0f8ff;
             text-align: left;
+            font-size: 1.1rem;
         }
         #bankDetails h3 {
             text-align: center;
             text-decoration: underline;
             color: #333;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             margin-top: 0;
         }
         .bank-info {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
         .bank-info strong {
             color: #0066cc;
@@ -138,11 +142,11 @@
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 12px 15px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 14px;
+            font-size: 1.2rem;
             margin: 10px 0;
             cursor: pointer;
             border-radius: 5px;
@@ -160,7 +164,7 @@
         footer {
             text-align: center;
             width: 100%;
-            font-size: 0.8rem;
+            font-size: 1rem;
             color: #555;
             padding: 10px;
             position: fixed;
@@ -200,7 +204,7 @@
             <input type="text" id="totalFundAmount" value="रु. १२००० /-" readonly>
         </div>
         
-        <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस् ! </button>
+        <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस् !</button>
         
         <div id="bankDetails">
             <h3>बैंक विवरण</h3>
@@ -252,7 +256,7 @@
             totalAmountInput.value = memberData[selectedMember].contributed;
             
             document.getElementById("bankDetails").style.display = "none";
-            document.getElementById("toggleBankDetails").textContent = "बैंक विवरण देखाउनुहोस्";
+            document.getElementById("toggleBankDetails").textContent = "बैंक विवरण देखाउनुहोस् !";
         } else {
             memberDetailsSection.style.display = "none";
         }
@@ -264,10 +268,10 @@
         
         if (bankDetails.style.display === "none" || bankDetails.style.display === "") {
             bankDetails.style.display = "block";
-            toggleButton.textContent = "बैंक विवरण लुकाउनुहोस्";
+            toggleButton.textContent = "बैंक विवरण लुकाउनुहोस् !";
         } else {
             bankDetails.style.display = "none";
-            toggleButton.textContent = "बैंक विवरण देखाउनुहोस्";
+            toggleButton.textContent = "बैंक विवरण देखाउनुहोस् !";
         }
     }
 </script>
