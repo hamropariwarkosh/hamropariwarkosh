@@ -13,7 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             flex-direction: column;
         }
         h1 {
@@ -24,7 +24,7 @@
         .hamro {
             color: white;
             -webkit-text-stroke: 1px black;
-            text-stroke: 2px black;
+            text-stroke: 1px black;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .parivar {
@@ -36,7 +36,7 @@
         .kosh {
             color: orange;
             -webkit-text-stroke: 1px black;
-            text-stroke: 2px black;
+            text-stroke: 1px black;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .container {
@@ -45,7 +45,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 350px;
+            width: 90%;
+            max-width: 350px;
+            margin-bottom: 40px;
         }
         #memberDropdown {
             width: 100%;
@@ -68,13 +70,13 @@
             text-align: center;
             text-decoration: underline;
             color: #333;
-            font-size: 23px;
+            font-size: 1.3rem;
         }
         #selectedMember {
             color: #4a2c82;
             font-weight: bold;
             text-align: center;
-            font-size: 16px;
+            font-size: 1rem;
             margin: 10px 0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
@@ -86,7 +88,8 @@
             cursor: not-allowed;
             font-size: 14px;
             font-weight: bold;
-            width: 100px;
+            width: 120px;
+            text-align: center;
         }
         #totalAmount {
             color: green;
@@ -99,10 +102,13 @@
             color: #555;
             margin-right: 10px;
             white-space: nowrap;
+            font-size: 1rem;
+            font-weight: 700;
         }
         .input-group {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 10px;
         }
         #bankDetails {
@@ -118,12 +124,12 @@
             text-align: center;
             text-decoration: underline;
             color: #333;
-            font-size: 20px;
+            font-size: 1.1rem;
             margin-top: 0;
         }
         .bank-info {
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 0.9rem;
         }
         .bank-info strong {
             color: #0066cc;
@@ -140,17 +146,26 @@
             margin: 10px 0;
             cursor: pointer;
             border-radius: 5px;
+            width: 100%;
         }
         #toggleBankDetails:hover {
             background-color: #45a049;
         }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ccc;
+            margin: 15px 0;
+        }
         footer {
-            position: absolute;
-            bottom: 10px;
             text-align: center;
             width: 100%;
-            font-size: 14px;
+            font-size: 0.8rem;
             color: #555;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            background-color: #f4f4f9;
         }
     </style>
 </head>
@@ -165,10 +180,10 @@
 <div class="container">
     <select id="memberDropdown" onchange="showMemberDetails()">
         <option value="">-- सदस्यको नाम छान्नुहोस् --</option>
-        <option value="अनिल/ संगीता">अनिल / संगीता</option>
-        <option value="मीना/ शैलेन्द्र">मीना / शैलेन्द्र</option>
-        <option value="सुनिल/ ममीता">सुनिल / ममीता</option>
-        <option value="बुद्धि/ अमीता">बुद्धि / अमीता</option>
+        <option value="अनिल / संगीता">अनिल / संगीता</option>
+        <option value="मीना / शैलेन्द्र">मीना / शैलेन्द्र</option>
+        <option value="सुनिल / ममीता">सुनिल / ममीता</option>
+        <option value="बुद्धि / अमीता">बुद्धि / अमीता</option>
     </select>
 
     <div id="memberDetails">
@@ -185,7 +200,7 @@
             <input type="text" id="totalFundAmount" value="रु. १२००० /-" readonly>
         </div>
         
-        <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस्</button>
+        <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस् ! </button>
         
         <div id="bankDetails">
             <h3>बैंक विवरण</h3>
@@ -207,22 +222,19 @@
 </footer>
 
 <script>
-    // EDIT THIS VALUE TO CHANGE THE FIXED FUND AMOUNT FOR ALL MEMBERS
-    const FIXED_FUND_AMOUNT = "रु. १२००० /-";
-    
     // Member data with individual contribution amounts
     const memberData = {
-        "अनिल/ संगीता": {
-            contributed: "रु. ३००० /-"
+        "अनिल / संगीता": {
+            contributed: "रु.३००० /-"
         },
-        "मीना/ शैलेन्द्र": {
-            contributed: "रु. ३००० /-"
+        "मीना / शैलेन्द्र": {
+            contributed: "रु.३००० /-"
         },
-        "सुनिल/ ममीता": {
-            contributed: "रु. ३००० /-"
+        "सुनिल / ममीता": {
+            contributed: "रु.३००० /-"
         },
-        "बुद्धि/ अमीता": {
-            contributed: "रु. ३००० /-"
+        "बुद्धि / अमीता": {
+            contributed: "रु.३००० /-"
         }
     };
 
@@ -231,7 +243,6 @@
         const memberDetailsSection = document.getElementById("memberDetails");
         const selectedMemberParagraph = document.getElementById("selectedMember");
         const totalAmountInput = document.getElementById("totalAmount");
-        const totalFundAmountInput = document.getElementById("totalFundAmount");
 
         if (selectedMember) {
             memberDetailsSection.style.display = "block";
@@ -239,8 +250,6 @@
             
             // Set individual contribution amount
             totalAmountInput.value = memberData[selectedMember].contributed;
-            // Set fixed fund amount for all members
-            totalFundAmountInput.value = FIXED_FUND_AMOUNT;
             
             document.getElementById("bankDetails").style.display = "none";
             document.getElementById("toggleBankDetails").textContent = "बैंक विवरण देखाउनुहोस्";
