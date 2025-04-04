@@ -47,7 +47,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 90%;
-            max-width: 380px; /* Slightly increased container width */
+            max-width: 380px;
             margin-bottom: 40px;
         }
         #memberDropdown {
@@ -57,6 +57,8 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1.1rem;
+            background-color: #fff;
+            cursor: pointer;
         }
         #memberDetails {
             display: none;
@@ -67,12 +69,18 @@
             background-color: #f9f9f9;
             text-align: left;
             font-size: 1.1rem;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         #memberDetails h3 {
             text-align: center;
             text-decoration: underline;
             color: #333;
             font-size: 1.5rem;
+            margin-top: 0;
         }
         #selectedMember {
             color: #4a2c82;
@@ -83,14 +91,14 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         input[readonly] {
-            padding: 8px 6px; /* Reduced padding */
+            padding: 8px 6px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #e9ecef;
             cursor: not-allowed;
-            font-size: 1rem; /* Slightly reduced font size */
+            font-size: 1rem;
             font-weight: bold;
-            width: 110px; /* Reduced width */
+            width: 110px;
             text-align: center;
             box-sizing: border-box;
         }
@@ -103,9 +111,9 @@
         label {
             font-weight: bold;
             color: #555;
-            margin-right: 8px; /* Reduced margin */
+            margin-right: 8px;
             white-space: nowrap;
-            font-size: 1.1rem; /* Slightly reduced */
+            font-size: 1.1rem;
             font-weight: 700;
         }
         .input-group {
@@ -123,6 +131,17 @@
             background-color: #f0f8ff;
             text-align: left;
             font-size: 1.1rem;
+            animation: slideDown 0.5s;
+        }
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         #bankDetails h3 {
             text-align: center;
@@ -143,14 +162,15 @@
             color: white;
             border: none;
             padding: 12px 15px;
-            text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 1.2rem;
             margin: 10px 0;
             cursor: pointer;
             border-radius: 5px;
-            width: 100%;
+            width: auto;
+            text-align: left;
+            transition: background-color 0.3s;
         }
         #toggleBankDetails:hover {
             background-color: #45a049;
@@ -170,6 +190,10 @@
             position: fixed;
             bottom: 0;
             background-color: #f4f4f9;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        .button-container {
+            text-align: left;
         }
     </style>
 </head>
@@ -204,7 +228,9 @@
             <input type="text" id="totalFundAmount" value="रु. १२००० /-" readonly>
         </div>
         
-        <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस् !</button>
+        <div class="button-container">
+            <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस् !</button>
+        </div>
         
         <div id="bankDetails">
             <h3>बैंक विवरण</h3>
@@ -229,16 +255,20 @@
     // Member data with individual contribution amounts
     const memberData = {
         "अनिल / संगीता": {
-            contributed: "रु. ३००० /-"
+            contributed: "रु. ३००० /-",
+            lastContribution: "२०८०/०४/१५"
         },
         "मीना / शैलेन्द्र": {
-            contributed: "रु. ३००० /-"
+            contributed: "रु. ३००० /-",
+            lastContribution: "२०८०/०४/१५"
         },
         "सुनिल / ममीता": {
-            contributed: "रु. ३००० /-"
+            contributed: "रु. ३००० /-",
+            lastContribution: "२०८०/०४/१५"
         },
         "बुद्धि / अमीता": {
-            contributed: "रु. ३००० /-"
+            contributed: "रु. ३००० /-",
+            lastContribution: "२०८०/०४/१५"
         }
     };
 
@@ -274,6 +304,11 @@
             toggleButton.textContent = "बैंक विवरण देखाउनुहोस् !";
         }
     }
+    
+    // Initialize with bank details hidden
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("bankDetails").style.display = "none";
+    });
 </script>
 </body>
 </html>
