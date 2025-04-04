@@ -131,6 +131,54 @@
             padding-top: 10px;
             border-top: 1px solid #ccc;
         }
+        
+        /* Bank Details section styling */
+        #bankDetails {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f8ff;
+            text-align: left;
+        }
+        
+        #bankDetails h3 {
+            text-align: center;
+            text-decoration: underline;
+            color: #333;
+            font-size: 20px;
+            margin-top: 0;
+        }
+        
+        .bank-info {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .bank-info strong {
+            color: #0066cc;
+        }
+        
+        /* Toggle button styling */
+        #toggleBankDetails {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        #toggleBankDetails:hover {
+            background-color: #45a049;
+        }
+
         /* Footer styling */
         footer {
             position: absolute;
@@ -166,24 +214,43 @@
     <div id="memberDetails">
         <h3>सदस्य विवरण</h3>
         <p id="selectedMember"></p>
-     <hr>
+        <hr>
         <!-- जम्मा गरेको रकम -->
         <div class="input-group">
             <label for="totalAmount">जम्मा गरेको रकम:</label>
             <input type="text" id="totalAmount" value="रु. ३००० /-" readonly>
         </div>
-      <hr>
+        <hr>
         <!-- कोषमा जम्मा भएको रकम -->
         <div class="input-group">
             <label for="totalFundAmount">कोषमा जम्मा भएको रकम:</label>
             <input type="text" id="totalFundAmount" value="रु. १२००० /-" readonly>
         </div>
+        
+        <!-- Toggle Bank Details Button -->
+        <button id="toggleBankDetails" onclick="toggleBankDetails()">बैंक विवरण देखाउनुहोस्</button>
+        
+        <!-- Bank Details Section -->
+        <div id="bankDetails">
+            <h3>बैंक विवरण</h3>
+            <div class="bank-info">
+                <strong>बैंकको नाम:</strong> राष्ट्रिय बाणिज्य बैंक
+            </div>
+            <div class="bank-info">
+                <strong>खाता नम्बर:</strong> 5260100000803010
+            </div>
+            <div class="bank-info">
+                <strong>खाता धनी:</strong> संगीता महर्जन / मीना महर्जन
+            </div>
+        </div>
     </div>
 </div>
+
 <!-- Footer -->
 <footer>
     © 2025 हाम्रो परिवार कोष. सर्वाधिकार सुरक्षित।
 </footer>
+
 <script>
     function showMemberDetails() {
         // Get the selected value from the dropdown
@@ -199,9 +266,26 @@
             // If a member is selected, show the details section and display the selected member's name
             memberDetailsSection.style.display = "block";
             selectedMemberParagraph.textContent = "सदस्यको नाम: " + selectedMember;
+            
+            // Hide bank details when member changes
+            document.getElementById("bankDetails").style.display = "none";
+            document.getElementById("toggleBankDetails").textContent = "बैंक विवरण देखाउनुहोस्";
         } else {
             // If no member is selected, hide the details section
             memberDetailsSection.style.display = "none";
+        }
+    }
+    
+    function toggleBankDetails() {
+        var bankDetails = document.getElementById("bankDetails");
+        var toggleButton = document.getElementById("toggleBankDetails");
+        
+        if (bankDetails.style.display === "none" || bankDetails.style.display === "") {
+            bankDetails.style.display = "block";
+            toggleButton.textContent = "बैंक विवरण लुकाउनुहोस्";
+        } else {
+            bankDetails.style.display = "none";
+            toggleButton.textContent = "बैंक विवरण देखाउनुहोस्";
         }
     }
 </script>
